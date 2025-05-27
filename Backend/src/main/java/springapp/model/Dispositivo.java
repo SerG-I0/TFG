@@ -21,6 +21,15 @@ public class Dispositivo {
 	}
 
 	
+	
+	public Dispositivo(String ip, String mac, String fabricante) {
+		super();
+		this.ip = ip;
+		this.mac = mac;
+		this.fabricante = fabricante;
+	}
+	
+	
 	// Constructor
 	public Dispositivo(String ip, String mac, String fabricante, ArrayList<Puerto> puertos) {
 		super();

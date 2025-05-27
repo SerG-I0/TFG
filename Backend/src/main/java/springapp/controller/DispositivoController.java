@@ -11,17 +11,21 @@ import java.util.List;
 @RestController
 @RequestMapping("/dispositivos")
 @CrossOrigin
+
 public class DispositivoController {
     @Autowired
     private DispositivoRepository dispositivoRepository;
 
     @GetMapping
     public List<Dispositivo> getAllDispositivos() {
+    	
         return dispositivoRepository.findAll();
     }
 
     @PostMapping
     public Dispositivo createDispositivo(@RequestBody Dispositivo dispositivo) {
+    	
+    	
         return dispositivoRepository.save(dispositivo);
     }
 }

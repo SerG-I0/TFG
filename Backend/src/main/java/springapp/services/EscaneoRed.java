@@ -7,9 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.springframework.stereotype.Service;
 
 import springapp.model.Dispositivo;
 
+
+@Service
 public class EscaneoRed {
 	 public List<Dispositivo> RedScann(){
 	        String command = "nmap -sP 192.168.1.0/24";

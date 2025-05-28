@@ -11,7 +11,7 @@ public class Dispositivo {
     private String ip;
 	private String mac;
     private String fabricante;
-    private ArrayList<Puerto> puertos = new ArrayList<>();
+    private ArrayList<Auditoria> puertos = new ArrayList<>();
     
     
     
@@ -31,7 +31,7 @@ public class Dispositivo {
 	
 	
 	// Constructor
-	public Dispositivo(String ip, String mac, String fabricante, ArrayList<Puerto> puertos) {
+	public Dispositivo(String ip, String mac, String fabricante, ArrayList<Auditoria> puertos) {
 		super();
 		this.ip = ip;
 		this.mac = mac;
@@ -68,11 +68,11 @@ public class Dispositivo {
 		this.fabricante = fabricante;
 	}
 
-	public ArrayList<Puerto> getPuertos() {
+	public ArrayList<Auditoria> getPuertos() {
 		return puertos;
 	}
 
-	public void setPuertos(ArrayList<Puerto> puertos) {
+	public void setPuertos(ArrayList<Auditoria> puertos) {
 		this.puertos = puertos;
 	}
 

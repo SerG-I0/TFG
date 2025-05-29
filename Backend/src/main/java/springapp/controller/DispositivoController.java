@@ -5,6 +5,7 @@ import springapp.dao.DispositivoRepository;
 import springapp.model.Dispositivo;
 import springapp.services.EscaneoRed;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -21,20 +22,29 @@ public class DispositivoController {
     @Autowired
     private EscaneoRed escaneored;
 
-    @GetMapping
+    @GetMapping("/getAllDispositivos")
     public List<Dispositivo> getAllDispositivos() {
     	
         return dispositivoRepository.findAll();
     }
 
-    @PostMapping
+    @PostMapping()
     public Dispositivo createDispositivo(@RequestBody Dispositivo dispositivo) {
     	
     	
         return dispositivoRepository.save(dispositivo);
     }
     
-    @GetMapping
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUsuario(@PathVariable String id) {
+        if (dispositivoRepository.existsById(id)) {
+            dispositivoRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+    
+    @GetMapping("/escanear")
     public List<Dispositivo> EscaneoWeb(){
     	
     	List<Dispositivo> dispositivos = new ArrayList<>();

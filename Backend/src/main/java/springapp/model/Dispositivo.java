@@ -8,10 +8,10 @@ import java.util.ArrayList;
 @Document(collection = "dispositivos")
 public class Dispositivo {
     @Id
+    private String id;
     private String ip;
 	private String mac;
     private String fabricante;
-    private ArrayList<Auditoria> puertos = new ArrayList<>();
     
     
     
@@ -20,7 +20,7 @@ public class Dispositivo {
 		super();
 	}
 
-	
+	//Constructor
 	
 	public Dispositivo(String ip, String mac, String fabricante) {
 		super();
@@ -28,18 +28,6 @@ public class Dispositivo {
 		this.mac = mac;
 		this.fabricante = fabricante;
 	}
-	
-	
-	// Constructor
-	public Dispositivo(String ip, String mac, String fabricante, ArrayList<Auditoria> puertos) {
-		super();
-		this.ip = ip;
-		this.mac = mac;
-		this.fabricante = fabricante;
-		this.puertos = puertos;
-	}
-
-	
 	
     
     //Getters y Setters 
@@ -68,13 +56,7 @@ public class Dispositivo {
 		this.fabricante = fabricante;
 	}
 
-	public ArrayList<Auditoria> getPuertos() {
-		return puertos;
-	}
 
-	public void setPuertos(ArrayList<Auditoria> puertos) {
-		this.puertos = puertos;
-	}
 
 	
 

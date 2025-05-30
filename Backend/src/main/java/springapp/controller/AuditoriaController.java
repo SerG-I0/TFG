@@ -3,6 +3,9 @@ package springapp.controller;
 
 import springapp.dao.AuditoriaRepository;
 import springapp.model.Auditoria;
+import springapp.model.Dispositivo;
+import springapp.services.AuditoriaDispositivo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +18,9 @@ import java.util.List;
 public class AuditoriaController {
     @Autowired
     private AuditoriaRepository auditoriaRepository;
+    
+    @Autowired
+    private AuditoriaDispositivo auditoriaDispositivo;
 
     @GetMapping("/getAllAuditorias")
     public List<Auditoria> getAllAuditorias() {
@@ -22,7 +28,9 @@ public class AuditoriaController {
     }
 
     @PostMapping("/crearAuditoria")
-    public Auditoria createAuditoria(@RequestBody Auditoria auditoria) {
+    public Auditoria createAuditoria(@RequestBody Dispositivo dispositivo) {
+    	
+    	Auditoria auditoria= auditoriaDispositivo.RealizarAuditoria(dispositivo);
         return auditoriaRepository.save(auditoria);
     }
     

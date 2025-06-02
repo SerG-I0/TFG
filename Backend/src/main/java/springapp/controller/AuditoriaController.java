@@ -5,6 +5,7 @@ import springapp.dao.AuditoriaRepository;
 import springapp.model.Auditoria;
 import springapp.model.Dispositivo;
 import springapp.services.AuditoriaDispositivo;
+import springapp.services.EmailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,10 @@ public class AuditoriaController {
     
     @Autowired
     private AuditoriaDispositivo auditoriaDispositivo;
+    
+    @Autowired
+    private EmailService emailService;
+    
 
     @GetMapping("/getAllAuditorias")
     public List<Auditoria> getAllAuditorias() {
@@ -31,6 +36,8 @@ public class AuditoriaController {
     public Auditoria createAuditoria(@RequestBody Dispositivo dispositivo) {
     	
     	Auditoria auditoria= auditoriaDispositivo.RealizarAuditoria(dispositivo);
+    	//emailService
+    	
         return auditoriaRepository.save(auditoria);
     }
     

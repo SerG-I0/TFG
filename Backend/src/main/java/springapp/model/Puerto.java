@@ -1,13 +1,12 @@
 package springapp.model;
 
-import java.util.List;
-
 public class Puerto {
 	private String puerto="";
     private String servicio="";
     private String vulnerabilidades=""; 
     private String cifrados="";
     private String certificados="";
+    private String sshkeys="";
     
     
     
@@ -20,6 +19,12 @@ public class Puerto {
 	}
 	public void setPuerto(String puerto) {
 		this.puerto = puerto;
+	}
+	public String getSshkeys() {
+		return sshkeys;
+	}
+	public void setSshkeys(String sshkeys) {
+		this.sshkeys = sshkeys;
 	}
 	public String getServicio() {
 		return servicio;

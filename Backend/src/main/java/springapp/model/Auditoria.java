@@ -1,6 +1,7 @@
 
 package springapp.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.springframework.data.annotation.Id;
@@ -12,10 +13,14 @@ public class Auditoria {
     private String id;
     private Dispositivo dispositivo;
     private ArrayList<Puerto> puertos = new ArrayList<>();
-    
+    private LocalDateTime Fecha;
+
 
     
-    //Constructor vacio
+ 
+
+
+	//Constructor vacio
 	public Auditoria() {
 		super();
 	}
@@ -26,6 +31,7 @@ public class Auditoria {
 		super();
 		this.dispositivo = dispositivo;
 		this.puertos = puertos;
+
 	}
 
 
@@ -56,6 +62,18 @@ public class Auditoria {
 	public void setPuertos(ArrayList<Puerto> puertos) {
 		this.puertos = puertos;
 	}
+	
+   public LocalDateTime getFecha() {
+		return Fecha;
+	}
+
+
+
+	public void setFecha(LocalDateTime fecha) {
+		Fecha = fecha;
+	}
+
+
 
 
 

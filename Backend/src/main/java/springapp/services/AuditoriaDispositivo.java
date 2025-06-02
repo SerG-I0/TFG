@@ -2,6 +2,7 @@ package springapp.services;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
 import java.io.IOException;
 import java.util.*;
 
@@ -90,6 +91,19 @@ public class AuditoriaDispositivo {
                     puerto.setCertificados(cleanText(certsBlock.toString()));
                     continue;
                 }
+                
+                // Keys Ssh
+                if (puerto != null && line.contains("ssh-hostkey:")) {
+                    StringBuilder sshBlock = new StringBuilder(line).append("\n");
+                    String peekLine;
+                    while ((peekLine = reader.readLine()) != null) {
+                        peekLine = peekLine.trim();
+                        sshBlock.append(peekLine).append("\n");
+                        if (peekLine.startsWith("|_")) break;
+                    }
+                    puerto.setSshkeys(cleanText(sshBlock.toString()));
+                    continue;
+                }
             }
 
             // Añadir el último puerto
@@ -99,6 +113,7 @@ public class AuditoriaDispositivo {
 
             auditoria.setDispositivo(d);
             auditoria.setPuertos(puertos);
+            auditoria.setFecha(LocalDateTime.now());
 
             process.waitFor();
 

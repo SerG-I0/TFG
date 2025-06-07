@@ -36,7 +36,7 @@ public class DispositivoController {
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUsuario(@PathVariable String id) {
+    public ResponseEntity<Void> deleteDispositivo(@PathVariable String id) {
         if (dispositivoRepository.existsById(id)) {
             dispositivoRepository.deleteById(id);
             return ResponseEntity.noContent().build();

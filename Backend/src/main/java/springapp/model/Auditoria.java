@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Auditoria {
     @Id
     private String id;
-    private Dispositivo dispositivo;
+	private Dispositivo dispositivo;
     private ArrayList<Puerto> puertos = new ArrayList<>();
     private LocalDateTime Fecha;
 
@@ -35,7 +35,17 @@ public class Auditoria {
 	}
 
 
+    public String getId() {
+		return id;
+	}
 
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	
 
 	public Dispositivo getDispositivo() {
 		return dispositivo;

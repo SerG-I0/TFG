@@ -23,17 +23,16 @@ public class DispositivoControllerTest {
     void testDeleteDispositivo() {
         // Crear y guardar un dispositivo para borrar
         Dispositivo dispositivo = new Dispositivo();
-        // dispositivo.setNombre("A borrar");
-        Dispositivo creado = dispositivoController.createDispositivo(dispositivo);
+        Dispositivo dispositivoprueba = dispositivoController.createDispositivo(dispositivo);
 
         // Borrar el dispositivo
-        var response = dispositivoController.deleteDispositivo(creado.getId());
+        var response = dispositivoController.deleteDispositivo(dispositivoprueba.getId());
 
         assertEquals(204, response.getStatusCode().value());
 
         // Comprobar que ya no exista
         List<Dispositivo> dispositivos = dispositivoController.getAllDispositivos();
-        assertFalse(dispositivos.stream().anyMatch(d -> d.getId().equals(creado.getId())));
+        assertFalse(dispositivos.stream().anyMatch(d -> d.getId().equals(dispositivoprueba.getId())));
     }
     
     
@@ -45,15 +44,17 @@ public class DispositivoControllerTest {
         //dispositivo.setNombre("Mi dispositivo");
         
         // Guardarlo usando el controlador
-        Dispositivo creado = dispositivoController.createDispositivo(dispositivo);
+        Dispositivo dispositivoprueba = dispositivoController.createDispositivo(dispositivo);
 
-        assertNotNull(creado);
-        assertNotNull(creado.getId()); // Suponiendo que tienes un campo id generado
+        assertNotNull(dispositivoprueba);
+        assertNotNull(dispositivoprueba.getId());
 
         // Traer todos los dispositivos y verificar que esté el que acabas de crear
         List<Dispositivo> dispositivos = dispositivoController.getAllDispositivos();
-        assertTrue(dispositivos.stream().anyMatch(d -> d.getId().equals(creado.getId())));
-        dispositivoController.deleteDispositivo(creado.getId());
+        assertTrue(dispositivos.stream().anyMatch(d -> d.getId().equals(dispositivoprueba.getId())));
+        
+        //Borramos para no alterar el estado de la BBDD
+        dispositivoController.deleteDispositivo(dispositivoprueba.getId());
     }
 
 

@@ -42,7 +42,7 @@ public class AuditoriaController {
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUsuario(@PathVariable String id) {
+    public ResponseEntity<Void> deleteAuditoria(@PathVariable String id) {
         if (auditoriaRepository.existsById(id)) {
             auditoriaRepository.deleteById(id);
             return ResponseEntity.noContent().build();

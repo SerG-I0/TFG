@@ -3,13 +3,12 @@ package springapp.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import java.util.ArrayList;
 
 @Document(collection = "dispositivos")
 public class Dispositivo {
     @Id
     private String id;
-    private String ip;
+	private String ip;
 	private String mac;
     private String fabricante;
     
@@ -31,6 +30,14 @@ public class Dispositivo {
 	
     
     //Getters y Setters 
+	
+	   public String getId() {
+			return id;
+		}
+
+		public void setId(String id) {
+			this.id = id;
+		}
     
 	public String getIp() {
 		return ip;

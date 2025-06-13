@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../services/api';
 import AuditarButton from '../components/AuditarButton';
+import LogoutButton from '../components/LogOutButton';
 
 function Modal({ mensaje }) {
   return (
@@ -86,6 +87,8 @@ function DispositivosPage() {
 
       {/* Mostrar modal si auditoría está en curso */}
       {auditoriaEnCurso && <Modal mensaje="Realizando auditoría, por favor espera..." />}
+
+      <LogoutButton />
     </div>
   );
 }

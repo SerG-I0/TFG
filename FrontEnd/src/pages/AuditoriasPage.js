@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../services/api';
 import EliminarButton from '../components/EliminarButton';
+import LogoutButton from '../components/LogOutButton';
 import { useNavigate } from 'react-router-dom';
 
 function AuditoriasPage() {
@@ -72,7 +73,10 @@ function AuditoriasPage() {
           )}
         </div>
       ))}
+    
+      <LogoutButton />
     </div>
+    
   );
 }
 

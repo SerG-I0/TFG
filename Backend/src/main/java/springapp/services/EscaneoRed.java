@@ -26,7 +26,6 @@ public class EscaneoRed {
 
 	            while ((line = reader.readLine()) != null) {
 	                line = line.trim();
-	                System.out.println(line); // Depuración opcional
 
 	                // Detectar IP
 	                if (line.startsWith("Nmap scan report for")) {
@@ -50,12 +49,6 @@ public class EscaneoRed {
 	            }
 
 	            process.waitFor();
-
-	            // Mostrar resultados
-	            System.out.println("\n=== Dispositivos detectados ===\n");
-	            for (Dispositivo d : dispositivos) {
-	                System.out.println(d);
-	            }
 
 	        } catch (IOException | InterruptedException e) {
 	            e.printStackTrace();

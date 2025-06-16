@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ import java.util.List;
 public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
+    
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @GetMapping("getAllUsuarios")
     public List<Usuario> getAllUsuarios() {
@@ -24,22 +27,17 @@ public class UsuarioController {
 
     @PostMapping("/crearUsuario")
     public ResponseEntity<?> createUsuario(@RequestBody Usuario usuario) {
-        // Buscar si ya existe un usuario con el email proporcionado
-        Usuario existente = usuarioRepository.findByEmail(usuario.getEmail());
-        
+        Usuario existente = usuarioRepository.findByEmail(usuario.getEmail()); 
         if (existente != null) {
-            // Ya existe un usuario con ese email, devolver error 409 Conflict
             return ResponseEntity.status(HttpStatus.CONFLICT)
                                  .body("Ya existe un usuario con ese correo electrónico.");
         }
-        
-        // Si no existe, guardamos el nuevo usuario
+        // Hash de la password antes de guardar
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         Usuario nuevoUsuario = usuarioRepository.save(usuario);
-        
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario);
     }
 
-    
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Usuario usuario) {
         Usuario encontrado = usuarioRepository.findByEmail(usuario.getEmail());
@@ -48,7 +46,7 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no encontrado.");
         }
 
-        if (!encontrado.getPassword().equals(usuario.getPassword()) ) {
+        if (!passwordEncoder.matches(usuario.getPassword(), encontrado.getPassword()) ) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Contraseña incorrecta.");
         }
 

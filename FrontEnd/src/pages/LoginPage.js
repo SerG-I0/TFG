@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../services/api"; // tu instancia de axios o similar
+import api from "../services/api"; 
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -21,10 +21,8 @@ function LoginPage() {
       });
       alert(response.data); // "Autenticado con éxito."
 
-      // Aquí podrías guardar token o estado de login si usas JWT o similar
-      // Por ejemplo: localStorage.setItem('token', response.data.token)
+       navigate('/dispositivos'); ;
 
-       navigate('/dispositivos'); ; // redirigir tras login exitoso
     } catch (error) {
       if (error.response) {
         setErrorMsg(error.response.data); // muestra mensaje desde backend
@@ -52,7 +50,7 @@ function LoginPage() {
           onChange={(e) => setPassword(e.target.value)} 
           required 
         /><br />
-        <button type="submit">Ingresar</button>
+        <button type="submit">Iniciar Sesión</button>
       </form>
       {errorMsg && <p style={{color: 'red'}}>{errorMsg}</p>}
 

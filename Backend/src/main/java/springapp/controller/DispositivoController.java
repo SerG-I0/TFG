@@ -47,6 +47,7 @@ public class DispositivoController {
     @GetMapping("/escanear")
     public List<Dispositivo> EscaneoWeb(){
     	
+    	//dispositivoRepository.deleteAll();
     	List<Dispositivo> dispositivos = new ArrayList<>();
     	dispositivos = escaneored.RedScann();
     	

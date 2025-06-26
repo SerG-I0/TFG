@@ -40,7 +40,9 @@ public class AuditoriaControllerTest {
     @Test
     public void testCreateAuditoriaAndGetAllAuditorias() {
     	//Creamos una auditoria de prueba para realizar el test
-        Auditoria auditoriaTest = auditoriaController.createAuditoria(dispositivoPrueba);
+    	  String emailUsuario = "test@example.com"; // email simulado para el test
+
+        Auditoria auditoriaTest = auditoriaController.createAuditoria(dispositivoPrueba,emailUsuario);
 
         //Comprobamos que existe la auditoria y que esta concide con la creada
         assertNotNull(auditoriaTest);
@@ -60,8 +62,10 @@ public class AuditoriaControllerTest {
     @Test
     public void testDeleteAuditoria() {
     	
+    	 String emailUsuario = "test@example.com"; // email simulado para el test
     	//Creamos una auditoria de prueba para insertarla
-        Auditoria auditoriaTest = auditoriaController.createAuditoria(dispositivoPrueba);
+    	
+        Auditoria auditoriaTest = auditoriaController.createAuditoria(dispositivoPrueba,emailUsuario);
         
        //Borramos la auditoria y recogemos la respuesta
         var response = auditoriaController.deleteAuditoria(auditoriaTest.getId());

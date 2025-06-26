@@ -10,27 +10,32 @@ function LoginPage() {
   
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setErrorMsg(''); // limpiar error previo
-    
-    try {
-      const response = await api.post('/usuarios/login', {
-        email,
-        password,
-      });
-      alert(response.data); // "Autenticado con éxito."
+const handleLogin = async (e) => {
+  e.preventDefault();
+  setErrorMsg(''); 
 
-       navigate('/dispositivos'); ;
+  try {
+    const response = await api.post('/usuarios/login', {
+      email,
+      password,
+    });
 
-    } catch (error) {
-      if (error.response) {
-        setErrorMsg(error.response.data); // muestra mensaje desde backend
-      } else {
-        setErrorMsg("Error en la conexión. Inténtalo de nuevo.");
-      }
+    const token = response.data; 
+    localStorage.setItem('token', token); // Guarda el token para usarlo en otras peticiones
+
+    alert("Autenticado con éxito.");
+
+    navigate('/dispositivos');
+
+  } catch (error) {
+    if (error.response) {
+      setErrorMsg(error.response.data); // muestra mensaje 
+    } else {
+      setErrorMsg("Error en la conexión. Inténtalo de nuevo.");
     }
-  };
+  }
+};
+
 
   return (
     <div>

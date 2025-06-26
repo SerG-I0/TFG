@@ -1,16 +1,15 @@
-// src/components/LogoutButton.jsx
 import { useNavigate } from 'react-router-dom';
 
 function LogoutButton() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Redirige al login
-    navigate('/');
+    localStorage.removeItem('token'); // Elimina el token del localStorage
+    navigate('/login'); // Redirige a la página de login
   };
 
   return (
-    <button onClick={handleLogout} >
+    <button onClick={handleLogout}>
       Cerrar sesión
     </button>
   );

@@ -87,7 +87,7 @@ function AuditoriasPage() {
           style={{ border: '1px solid #ccc', marginBottom: '10px', padding: '10px' }}>
           <div>
             <strong>Fecha de Auditoría:</strong>{' '}
-            {new Date(auditoria.fecha).toLocaleDateString()}<br />
+            {new Date(auditoria.fecha).toLocaleString()}<br />
             <strong>IP del Dispositivo:</strong> {auditoria.dispositivo?.ip}<br />
             <strong>MAC del Dispositivo:</strong> {auditoria.dispositivo?.mac}
           </div>

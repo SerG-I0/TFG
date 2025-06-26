@@ -4,6 +4,7 @@ package springapp.controller;
 import springapp.dao.AuditoriaRepository;
 import springapp.model.Auditoria;
 import springapp.model.Dispositivo;
+import springapp.security.JWUtil;
 import springapp.services.AuditoriaDispositivo;
 import springapp.services.EmailService;
 
@@ -33,13 +34,21 @@ public class AuditoriaController {
     }
 
     @PostMapping("/crearAuditoria")
-    public Auditoria createAuditoria(@RequestBody Dispositivo dispositivo) {
-    	
-    	Auditoria auditoria= auditoriaDispositivo.RealizarAuditoria(dispositivo);
-    	//emailService.EnviarAuditoria(auditoria, "sergio231199@hotmail.com");
-    	
+    public Auditoria createAuditoria(
+            @RequestBody Dispositivo dispositivo,
+            @RequestHeader("Authorization") String tokenauth) {
+
+        String token = tokenauth.replace("Bearer ", "");
+
+        // Obtener email del token
+        String email = JWUtil.getEmailFromToken(token);
+        Auditoria auditoria = auditoriaDispositivo.RealizarAuditoria(dispositivo);
+
+        emailService.EnviarAuditoria(auditoria, email);
+
         return auditoriaRepository.save(auditoria);
     }
+
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAuditoria(@PathVariable String id) {

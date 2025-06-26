@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "usuarios")
 public class Usuario {
     @Id
-    private String idusuario;
+    private String id;
 	private String password;
     private String email;
     
@@ -19,11 +19,17 @@ public class Usuario {
 		super();
 	}
     
+    //Constructor
+  	public Usuario(String email, String password) {
+  		super();
+  		this.password = password;
+  		this.email = email;
+  	}
     
     //Constructor
-	public Usuario(String idusuario, String password, String email) {
+	public Usuario(String id, String password, String email) {
 		super();
-		this.idusuario = idusuario;
+		this.id = id;
 		this.password = password;
 		this.email = email;
 	}
@@ -31,11 +37,11 @@ public class Usuario {
 
 
 	//Getters y Setters
-    public String getIdusuario() {
-		return idusuario;
+    public String getId() {
+		return id;
 	}
-	public void setIdusuario(String idusuario) {
-		this.idusuario = idusuario;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getPassword() {
 		return password;

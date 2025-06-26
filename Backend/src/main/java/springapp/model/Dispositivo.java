@@ -1,6 +1,8 @@
 
 package springapp.model;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,21 +13,26 @@ public class Dispositivo {
 	private String ip;
 	private String mac;
     private String fabricante;
+    private LocalDateTime fecha;
     
     
     
-    // Constructor vacio
+
+	
+
+	// Constructor vacio
 	public Dispositivo() {
 		super();
 	}
 
 	//Constructor
 	
-	public Dispositivo(String ip, String mac, String fabricante) {
+	public Dispositivo(String ip, String mac, String fabricante, LocalDateTime fecha) {
 		super();
 		this.ip = ip;
 		this.mac = mac;
 		this.fabricante = fabricante;
+		this.fecha = fecha;
 	}
 	
     
@@ -61,6 +68,14 @@ public class Dispositivo {
 
 	public void setFabricante(String fabricante) {
 		this.fabricante = fabricante;
+	}
+	
+    public LocalDateTime getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(LocalDateTime fecha) {
+		fecha = fecha;
 	}
 
 

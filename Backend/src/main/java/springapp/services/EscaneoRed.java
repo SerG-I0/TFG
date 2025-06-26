@@ -3,6 +3,7 @@ package springapp.services;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -42,7 +43,7 @@ public class EscaneoRed {
 	                        if (fabricante.equalsIgnoreCase("unknown")) {
 	                            fabricante = "Desconocido";
 	                        }
-	                        dispositivos.add(new Dispositivo(currentIp, mac, fabricante));
+	                        dispositivos.add(new Dispositivo(currentIp, mac, fabricante,LocalDateTime.now()));
 	                        currentIp = null; // Reset IP después de asignar
 	                    }
 	                }

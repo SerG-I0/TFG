@@ -23,9 +23,9 @@ public class EmailService {
 	    Properties props = System.getProperties();
 	    props.put("mail.smtp.host", "smtp.gmail.com");  //El servidor SMTP de Google
 	    props.put("mail.smtp.user", correoorigen);
-	    props.put("mail.smtp.clave", password);    //La clave de la cuenta
-	    props.put("mail.smtp.auth", "true");    //Usar autenticación mediante usuario y clave
-	    props.put("mail.smtp.starttls.enable", "true"); //Para conectar de manera segura al servidor SMTP
+	    props.put("mail.smtp.clave", password);    //contraseña de la cuenta
+	    props.put("mail.smtp.auth", "true");    
+	    props.put("mail.smtp.starttls.enable", "true"); 
 	    props.put("mail.smtp.port", "587"); //El puerto SMTP seguro de Google
 
 	    Session session = Session.getDefaultInstance(props);
@@ -33,7 +33,7 @@ public class EmailService {
 
 	    try {
 	        message.setFrom(new InternetAddress(correoorigen));
-	        message.addRecipient(Message.RecipientType.TO, new InternetAddress(emaildestino));   //Se podrían añadir varios de la misma manera
+	        message.addRecipient(Message.RecipientType.TO, new InternetAddress(emaildestino)); 
 	        message.setSubject("Auditoria Dispositivo");
 	        message.setText(mensaje);
 	        Transport transport = session.getTransport("smtp");

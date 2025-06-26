@@ -3,6 +3,8 @@ package springapp.controller;
 
 import springapp.dao.UsuarioRepository;
 import springapp.model.Usuario;
+import springapp.security.JWUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,19 +41,18 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Usuario usuario) {
+    public ResponseEntity<?> login(@RequestBody Usuario usuario) {
         Usuario encontrado = usuarioRepository.findByEmail(usuario.getEmail());
 
-        if (encontrado == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no encontrado.");
+        if (encontrado == null || !passwordEncoder.matches(usuario.getPassword(), encontrado.getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas.");
         }
 
-        if (!passwordEncoder.matches(usuario.getPassword(), encontrado.getPassword()) ) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Contraseña incorrecta.");
-        }
+        String token = JWUtil.generateToken(encontrado.getEmail());
 
-        return ResponseEntity.ok("Autenticado con éxito.");
+        return ResponseEntity.ok().body(token);
     }
+
 
     
     @DeleteMapping("/{id}")

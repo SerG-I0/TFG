@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../services/api";
 import { useNavigate } from 'react-router-dom';
+import '../styles/CrearUsuarioPage.css';
 
 function CrearUsuario() {
   const [email, setEmail] = useState('');
@@ -65,43 +66,35 @@ function CrearUsuario() {
     navigate('/');
   };
 
-  return (
-    <div>
-      <h1>Crear nuevo usuario</h1>
+ return (
+  <div className="crear-usuario-container">
+    <h1>Crear nuevo usuario</h1>
 
-      {/* Muestra el error si existe */}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    {error && <p className="error">{error}</p>}
+    {success && <p className="success">{success}</p>}
 
-      {/* Muestra el mensaje de éxito si existe */}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
+    <form onSubmit={crearUsuario}>
+      <input
+        type="email"
+        placeholder="Correo electrónico"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Contraseña"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+      <button type="submit">Crear nuevo usuario</button>
+    </form>
 
-      <form onSubmit={crearUsuario}>
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        /><br/>
+    <button onClick={volverClick}>Volver al login</button>
+  </div>
+);
 
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        /><br/>
-
-        <button type="submit">
-          Crear nuevo usuario
-        </button>
-      </form>
-
-      <button onClick={volverClick}>
-        Volver al login
-      </button>
-    </div>
-  );
 }
 
 export default CrearUsuario;

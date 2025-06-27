@@ -2,6 +2,8 @@ import { useState } from "react";
 import api from "../services/api"; 
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import '../styles/LoginPage.css';
+;
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -36,33 +38,33 @@ const handleLogin = async (e) => {
   }
 };
 
-
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <input 
-          type="email" 
-          placeholder="Correo electrónico" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)} 
-          required 
-        /><br />
-        <input 
-          type="password" 
-          placeholder="Contraseña" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-          required 
-        /><br />
-        <button type="submit">Iniciar Sesión</button>
-      </form>
-      {errorMsg && <p style={{color: 'red'}}>{errorMsg}</p>}
+  <div className="login-container">
+    <h1>Login</h1>
+    <form onSubmit={handleLogin}>
+      <input 
+        type="email" 
+        placeholder="Correo electrónico" 
+        value={email} 
+        onChange={(e) => setEmail(e.target.value)} 
+        required 
+      />
+      <input 
+        type="password" 
+        placeholder="Contraseña" 
+        value={password} 
+        onChange={(e) => setPassword(e.target.value)} 
+        required 
+      />
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+    {errorMsg && <p className="error-message">{errorMsg}</p>}
 
-      <p>¿No tienes una cuenta?</p>
-      <Link to="/crear_usuario">Crear nuevo usuario</Link>
-    </div>
-  );
+    <p>¿No tienes una cuenta?</p>
+    <Link to="/crear_usuario">Crear nuevo usuario</Link>
+  </div>
+);
+
 }
 
 export default LoginPage;

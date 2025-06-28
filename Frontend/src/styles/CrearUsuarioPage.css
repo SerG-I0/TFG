@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.crear-usuario-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  color: white;
+  text-align: center;
+}
+
+.crear-usuario-container h1 {
+  margin-bottom: 1.5rem;
+}
+
+.crear-usuario-container input {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.crear-usuario-container input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #ffffffaa;
+  background-color: #ffffff20;
+  color: #fff;
+}
+
+.crear-usuario-container button {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  background-color: #ffffff33;
+  color: white;
+  font-size: 1rem;
+  border: 1px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.crear-usuario-container button:hover {
+  background-color: #ffffff55;
+}
+
+.crear-usuario-container p {
+  margin-top: 1rem;
+}
+
+.crear-usuario-container .error {
+  color: #ff6b6b;
+}
+
+.crear-usuario-container .success {
+  color: #4fff88;
+}
+
+@media (max-width: 480px) {
+  .crear-usuario-container {
+    padding: 1.5rem;
+    backdrop-filter: blur(6px);
+  }
+
+  .crear-usuario-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .crear-usuario-container input,
+  .crear-usuario-container button {
+    font-size: 0.95rem;
+  }
+}

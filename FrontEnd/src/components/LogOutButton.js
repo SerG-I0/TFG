@@ -1,15 +1,18 @@
 import { useNavigate } from 'react-router-dom';
+import { FiLogOut } from 'react-icons/fi';
+import '../styles/LogOutButton.css';
 
 function LogoutButton() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('token'); // Elimina el token del localStorage
-    navigate('/login'); // Redirige a la página de login
+    localStorage.removeItem('token');
+    navigate('/login');
   };
 
   return (
-    <button onClick={handleLogout}>
+    <button className="logout-button" onClick={handleLogout}>
+      <FiLogOut size={20} style={{ marginRight: '8px' }} />
       Cerrar sesión
     </button>
   );

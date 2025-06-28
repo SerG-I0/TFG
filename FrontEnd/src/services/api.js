@@ -16,10 +16,15 @@ api.interceptors.response.use(
   response => response,
   error => {
     if (error.response && error.response.status === 401) {
-      handleLogout();
+
+      if (window.location.pathname !== '/login') {
+        //Si estamos fuera del login el 401 sera por token expirado
+        handleLogout();
+      }
     }
     return Promise.reject(error);
   }
 );
+
 
 export default api;

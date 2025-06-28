@@ -3,6 +3,8 @@ import api from '../services/api';
 import AuditarButton from '../components/AuditarButton';
 import LogoutButton from '../components/LogOutButton';
 import { useAuditoria } from '../context/AuditoriaContext';
+import '../styles/DetectarDispositivosPage.css';
+
 
 function DispositivosPage() {
   const [dispositivos, setDispositivos] = useState([]);
@@ -46,34 +48,31 @@ function DispositivosPage() {
         setEscaneoRealizado(true); // aunque haya error, ya se intentó el escaneo
       });
   }
-
-  return (
-    <div className="p-4">
-      <h1 className="text-2xl font-semibold mb-4">Listado de Dispositivos</h1>
+ return (
+  <>
+    <div className="dispositivos-container">
+      <h1>Listado de Dispositivos</h1>
 
       <button 
         onClick={handleScanNetwork} 
         disabled={auditoriaEnCurso}
-        className={`bg-blue-500 hover:bg-blue-600 text-gray-50 font-semibold py-2 px-4 rounded mr-4 mb-4 ${
-          auditoriaEnCurso ? 'opacity-50 cursor-not-allowed' : ''
-        }`}
       >
         Escanear Red
       </button>
 
       {auditoriaEnCurso && (
-        <p className="text-yellow-600 font-semibold mb-4">
+        <p className="auditoria-message">
           Auditoría en curso. Por favor espera a que termine antes de iniciar otra.
         </p>
       )}
 
-      <ul className="bg-gray-100 p-4 rounded-md shadow-md">
+      <ul className="device-list">
         {(escaneoRealizado && dispositivos.length === 0) ? (
-          <p>No se han encontrado dispositivos</p>
+          <p className="no-devices-message">No se han encontrado dispositivos</p>
         ) : (
           dispositivos.map(dispositivo => (
-            <li key={dispositivo.id} className="bg-gray-50 p-4 rounded-md shadow-md mb-4">
-              <h2 className="text-lg font-semibold">Dispositivo Encontrado</h2>
+            <li key={dispositivo.id}>
+              <h2>Dispositivo Encontrado</h2>
               <p><strong>IP:</strong> {dispositivo.ip}</p>
               <p><strong>MAC:</strong> {dispositivo.mac}</p>
               <p><strong>Fabricante:</strong> {dispositivo.fabricante}</p>
@@ -85,10 +84,12 @@ function DispositivosPage() {
           ))
         )}
       </ul>
-
-      <LogoutButton />
     </div>
-  );
+
+    <LogoutButton />
+  </>
+);
+
 }
 
 export default DispositivosPage;

@@ -71,6 +71,7 @@ function AuditoriasPage() {
   );
 
   return (
+    <>
     <div>
       <h1>Auditorías Realizadas</h1>
 
@@ -141,8 +142,10 @@ function AuditoriasPage() {
         </button>
       </div>
 
-      <LogoutButton />
+      
     </div>
+    <LogoutButton />
+    </>
   );
 }
 

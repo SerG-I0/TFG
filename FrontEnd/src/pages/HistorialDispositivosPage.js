@@ -69,6 +69,7 @@ function HistorialDispositivosPage() {
   );
 
   return (
+    <>
     <div>
       <h1>Dispositivos Detectados</h1>
         
@@ -115,8 +116,10 @@ function HistorialDispositivosPage() {
         </button>
       </div>
 
-      <LogoutButton />
+      
     </div>
+    <LogoutButton />
+    </>
   );
 }
 

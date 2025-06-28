@@ -4,6 +4,9 @@ import AuditoriasPage from './pages/AuditoriasPage';
 import LoginPage from './pages/LoginPage';
 import CrearUsuarioPage from './pages/CrearUsuarioPage';
 import HistorialDispositivosPage from './pages/HistorialDispositivosPage';
+import MiCuentaPage from './pages/MiCuentaPage'; 
+import { FaUserCircle } from 'react-icons/fa';
+import './styles/Navbar.css';
 
 // Importa tu context provider
 import { AuditoriaProvider } from './context/AuditoriaContext';
@@ -14,14 +17,22 @@ function PrivateRoute({ children }) {
   return token ? children : <Navigate to="/login" replace />;
 }
 
+
 function Navbar() {
   return (
     <nav>
-      <ul>
-        <li><Link to="/dispositivos">Escanear Red</Link></li>
-        <li><Link to="/auditorias">Historial de Auditorías</Link></li>
-        <li><Link to="/historial_dispositivos">Historial Dispositivos</Link></li>
-      </ul>
+      <div className="navbar-content">
+        <ul>
+          <li><Link to="/dispositivos">Escanear Red</Link></li>
+          <li><Link to="/auditorias">Historial de Auditorías</Link></li>
+          <li><Link to="/historial_dispositivos">Historial Dispositivos</Link></li>
+        </ul>
+        <div className="nav-account">
+          <Link to="/cuenta">
+          <FaUserCircle size={24} style={{ marginRight: '8px', position: 'relative', top: '6px' }} />
+          Mi Cuenta</Link>
+        </div>
+      </div>
     </nav>
   );
 }
@@ -63,6 +74,14 @@ function AppContent() {
           element={
             <PrivateRoute>
               <HistorialDispositivosPage />
+            </PrivateRoute>
+          } 
+        />
+         <Route 
+          path="/cuenta" 
+          element={
+            <PrivateRoute>
+              <MiCuentaPage />
             </PrivateRoute>
           } 
         />

@@ -1,0 +1,143 @@
+.historial-container {
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 2.5rem 3rem;
+  max-width: 80rem; /* AUMENTADO */
+  width: 95%;
+  margin: 2rem auto 4rem auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.historial-container h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.historial-container input[type="date"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.historial-container input[type="date"]:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: white;
+}
+
+.historial-container input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+/* NUEVO GRID */
+.device-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.device-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  gap: 1rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.device-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.device-card p,
+.device-card strong {
+  margin: 0.2rem 0;
+  font-size: 1rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.pagination button {
+  padding: 0.8rem 1.2rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 1rem;
+  border: 1px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  min-width: 100px;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.pagination button:disabled {
+  background-color: rgba(255, 255, 255, 0.15);
+  cursor: not-allowed;
+}
+
+.pagination span {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.no-devices-message {
+  color: #e0e0e0;
+  font-style: italic;
+  margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .device-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .device-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .device-card div {
+    margin-bottom: 0.8rem;
+  }
+
+  .pagination button {
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
+    min-width: 80px;
+  }
+
+  .pagination span {
+    font-size: 1rem;
+  }
+}

@@ -1,26 +1,24 @@
-/* Contenedor principal con fondo translúcido y blur */
 .dispositivos-container {
-  background: transparent; /* Sin fondo sólido ni semi-transparente */
+  background: transparent;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 16px;
+  border-radius: 1rem;
   padding: 2rem;
-  max-width: 480px;
+  padding-top: 4rem;
+  max-width: 30rem; /* 480px */
   width: 90%;
-  margin: 2rem auto 5rem auto;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  margin: 2rem auto 4rem auto;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
 }
 
-/* Título */
 .dispositivos-container h1 {
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
 }
 
-/* Botones */
 .dispositivos-container button {
   width: 100%;
   padding: 0.8rem;
@@ -29,7 +27,7 @@
   color: white;
   font-size: 1rem;
   border: 1px solid white;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
   user-select: none;
@@ -44,29 +42,26 @@
   cursor: not-allowed;
 }
 
-/* Mensaje auditoría en curso */
 .auditoria-message {
-  color: #fce86c; /* amarillo claro */
+  color: #fce86c;
   font-weight: 600;
   margin-bottom: 1rem;
 }
 
-/* Lista de dispositivos */
 .device-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  max-height: 300px;
+  max-height: 18.75rem; /* 300px */
   overflow-y: auto;
 }
 
-/* Cada dispositivo */
 .device-list li {
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  border-radius: 0.75rem;
   padding: 1rem;
   margin-bottom: 1rem;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.25rem 1.875rem rgba(0, 0, 0, 0.1);
   text-align: left;
   transition: background-color 0.3s ease;
 }
@@ -75,28 +70,25 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Datos de dispositivo */
 .device-list li p {
   margin: 0.2rem 0;
   font-size: 1rem;
 }
 
-/* Título de dispositivo */
 .device-list li h2 {
   margin: 0 0 0.8rem 0;
   font-size: 1.2rem;
 }
 
-/* Mensaje cuando no hay dispositivos */
 .no-devices-message {
   color: #e0e0e0;
   font-style: italic;
   margin-top: 2rem;
 }
 
-/* Scrollbar personalizado para lista dispositivos */
+/* Scrollbar */
 .device-list::-webkit-scrollbar {
-  width: 8px;
+  width: 0.5rem;
 }
 
 .device-list::-webkit-scrollbar-track {
@@ -105,30 +97,30 @@
 
 .device-list::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
+  border-radius: 0.5rem;
 }
 
 .device-list::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
 }
 
-/* Para que el LogoutButton no tape contenido */
-body, #root {
+/* FONDO Y ESPACIADO SUPERIOR CORREGIDO */
+body,
+#root {
   min-height: 100vh;
   background: linear-gradient(135deg, #6e8efb, #a777e3);
   margin: 0;
-  padding: 0;
+ 
 }
 
-/* Responsive para móviles */
-@media (max-width: 600px) {
+@media (max-width: 37.5rem) {
   .dispositivos-container {
     max-width: 90%;
-    margin: 1rem auto 6rem auto;
+    margin: 1rem auto 5rem auto;
     padding: 1rem;
-    padding-bottom: 6rem; /* también aquí */
+    padding-bottom: 6rem;
   }
-  
+
   .device-list li {
     padding: 0.8rem;
   }

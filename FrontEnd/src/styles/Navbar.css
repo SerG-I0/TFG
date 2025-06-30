@@ -1,4 +1,4 @@
-/* CONTENEDOR INTERNO FLEXIBLE */
+
 .navbar-content {
   width: 100%;
   max-width: 1200px;
@@ -9,7 +9,6 @@
   align-items: center;
 }
 
-/* YA EXISTENTE */
 nav {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -18,7 +17,7 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 3.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,5 +53,5 @@ nav li a:hover,
 
 /* PARA EVITAR QUE EL CONTENIDO QUEDE DETRÁS */
 body {
-  padding-top: 60px;
+  padding-top: 3.75rem;
 }

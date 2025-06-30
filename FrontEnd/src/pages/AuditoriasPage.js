@@ -2,16 +2,17 @@ import { useEffect, useState } from 'react';
 import api from '../services/api';
 import EliminarButton from '../components/EliminarButton';
 import LogoutButton from '../components/LogOutButton';
-import { useNavigate } from 'react-router-dom';
+import '../styles/AuditoriasPage.css';
+import PaginationButtons from '../components/PaginationButtons';
+import { FaEye} from 'react-icons/fa';
+
 
 function AuditoriasPage() {
   const [auditorias, setAuditorias] = useState([]);
-  const [expandedIndex, setExpandedIndex] = useState(null);
+  const [modalAuditoria, setModalAuditoria] = useState(null);
   const [selectedDate, setSelectedDate] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
-
-  const navigate = useNavigate();
+  const itemsPerPage = 4; // 2 columnas x 3 filas
 
   useEffect(() => {
     api
@@ -30,9 +31,8 @@ function AuditoriasPage() {
     api
       .delete(`/auditorias/${id}`)
       .then(() => {
-        setAuditorias((prev) =>
-          prev.filter((a) => a.id !== id)
-        );
+        setAuditorias((prev) => prev.filter((a) => a.id !== id));
+        setModalAuditoria(null); // Cerrar modal si está abierto con esa auditoría
       })
       .catch((error) => {
         console.error('Error al eliminar!', error);
@@ -40,11 +40,6 @@ function AuditoriasPage() {
       });
   };
 
-  const toggleExpand = (index) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
-
-  // Filtra según la fecha
   const auditoriasFiltradas = selectedDate
     ? auditorias.filter((auditoria) =>
         new Date(auditoria.fecha).toLocaleDateString() ===
@@ -52,99 +47,88 @@ function AuditoriasPage() {
       )
     : auditorias;
 
-  // Ordena de más reciente a más antigua
   const auditoriasOrdenadas = [...auditoriasFiltradas].sort(
     (a, b) => new Date(b.fecha) - new Date(a.fecha)
   );
 
-  // Paginado
   const indexOfLast = currentPage * itemsPerPage;
   const indexOfFirst = indexOfLast - itemsPerPage;
-
-  const currentAuditorias = auditoriasOrdenadas.slice(
-    indexOfFirst,
-    indexOfLast
-  );
-
-  const totalPages = Math.ceil(
-    auditoriasOrdenadas.length / itemsPerPage
-  );
+  const currentAuditorias = auditoriasOrdenadas.slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.ceil(auditoriasOrdenadas.length / itemsPerPage);
 
   return (
-    <div>
-      <h1>Auditorías Realizadas</h1>
+    <>
+      <div className="auditorias-container">
+        <h1 className="titulo-auditorias">Auditorías Realizadas</h1>
 
-      {/* Filtra por fecha */}
-      <input
-        type="date"
-        value={selectedDate}
-        onChange={(e) => setSelectedDate(e.target.value)}
-      />
+        <input
+          type="date"
+          value={selectedDate}
+          onChange={(e) => setSelectedDate(e.target.value)}
+          className="filtro-fecha"
+        />
 
-      {currentAuditorias.map((auditoria, index) => (
-        <div
-          key={auditoria.id}
-          style={{ border: '1px solid #ccc', marginBottom: '10px', padding: '10px' }}>
-          <div>
-            <strong>Fecha de Auditoría:</strong>{' '}
-            {new Date(auditoria.fecha).toLocaleDateString()}<br />
-            <strong>IP del Dispositivo:</strong> {auditoria.dispositivo?.ip}<br />
-            <strong>MAC del Dispositivo:</strong> {auditoria.dispositivo?.mac}
-          </div>
-          <button onClick={() => toggleExpand(indexOfFirst + index)}>
-            {expandedIndex === indexOfFirst + index ? 'Mostrar menos' : 'Mostrar más'}
-          </button>
-          <EliminarButton onClick={() => eliminarAuditoria(auditoria.id)} />
-
-          {expandedIndex === indexOfFirst + index && (
-            <div style={{ marginTop: '10px', paddingLeft: '15px' }}>
-              <h4>Puertos Abiertos:</h4>
-              <ul>
-                {auditoria.puertos?.map((puerto, i) => (
-                    <li key={i}>
-                    <strong>Puerto:</strong> {puerto.puerto}<br />
-                    <strong>Servicio:</strong> {puerto.servicio}<br />
-                    <strong>Vulnerabilidades:</strong> {puerto.vulnerabilidades ||
-                    'Ninguna vulnerabilidad detectada'}
-                    <br />
-                    <strong>Cifrados:</strong> {puerto.cifrados ||
-                    'No detectados'}
-                    <br />
-                    <strong>Certificados:</strong> {puerto.certificados ||
-                    'No detectados'}
-                    <hr />
-                    </li>
-                ))}
-              </ul>
+        <div className="auditorias-grid">
+          {currentAuditorias.map((auditoria) => (
+            <div className="auditoria-card" key={auditoria.id}>
+              <div className="auditoria-info">
+                <p><strong>Fecha:</strong> {new Date(auditoria.fecha).toLocaleString()}</p>
+                <p><strong>IP:</strong> {auditoria.dispositivo?.ip}</p>
+                <p><strong>MAC:</strong> {auditoria.dispositivo?.mac}</p>
+              </div>
+              <div className="botones-auditoria">
+                <button className='boton-style' onClick={() => setModalAuditoria(auditoria)}>
+                 Ver Auditoria
+                 <FaEye style={{ marginLeft: '0.5rem', verticalAlign: 'middle', position: 'relative', top: '0px' }} />
+                </button>
+                <EliminarButton onClick={() => eliminarAuditoria(auditoria.id)} />
+              </div>
             </div>
-          )}
-
+          ))}
         </div>
-      ))}
 
-      {/* Botones de paginado */}
-      <div style={{ marginBottom: '20px' }}>
-        <button
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage((prev) => prev - 1)}
-        >
-          Anterior
-        </button>
+        <div className="paginacion">
+         <PaginationButtons
+        currentPage={currentPage}
+        totalPages={totalPages}
+        setCurrentPage={setCurrentPage}
+      />
+        </div>
 
-        <span> Página {currentPage} de {totalPages} </span>
-
-        <button
-          disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage((prev) => prev + 1)}
-        >
-          Siguiente
-        </button>
+        
       </div>
+      
 
+      {/* Modal */}
+      {modalAuditoria && (
+        <div className="modal-overlay" onClick={() => setModalAuditoria(null)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <h2>Detalle Auditoría</h2>
+            <p><strong>Fecha:</strong> {new Date(modalAuditoria.fecha).toLocaleString()}</p>
+            <p><strong>IP:</strong> {modalAuditoria.dispositivo?.ip}</p>
+            <p><strong>MAC:</strong> {modalAuditoria.dispositivo?.mac}</p>
+
+            <h3>Puertos Abiertos:</h3>
+            <ul className="puertos-list">
+              {modalAuditoria.puertos?.map((puerto, i) => (
+                <li key={i}>
+                  <p><strong>Puerto:</strong> {puerto.puerto}</p>
+                  <p><strong>Servicio:</strong> {puerto.servicio}</p>
+                  <p><strong>Vulnerabilidades:</strong> {puerto.vulnerabilidades || 'Ninguna vulnerabilidad detectada'}</p>
+                  <p><strong>Cifrados:</strong> {puerto.cifrados || 'No detectados'}</p>
+                  <p><strong>Certificados:</strong> {puerto.certificados || 'No detectados'}</p>
+                  <hr />
+                </li>
+              ))}
+            </ul>
+
+            <button className="modal-close-btn" onClick={() => setModalAuditoria(null)}>Cerrar</button>
+          </div>
+        </div>
+      )}
       <LogoutButton />
-    </div>
+    </>
   );
 }
 
 export default AuditoriasPage;
-

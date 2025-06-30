@@ -6,19 +6,23 @@ import springapp.model.Usuario;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
+
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = SpringReactMongoApplication.class)
+@AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsuarioControllerTest {
 
     @Autowired
     private UsuarioController usuarioController;
+    
 
 
     private static final String TEST_EMAIL = "prueba@ejemplo.com";
@@ -100,14 +104,14 @@ public class UsuarioControllerTest {
     @Order(6)
     void testEliminarUsuarioExistente() {
 
-        ResponseEntity<Void> response = usuarioController.deleteUsuario(usuario.getId());
+        ResponseEntity<Void> response = usuarioController.deleteUsuario(usuario.getEmail());
         assertEquals(204, response.getStatusCode().value());
     }
 
     @Test
     @Order(7)
     void testEliminarUsuarioInexistente() {
-        ResponseEntity<Void> response = usuarioController.deleteUsuario("inexistente-id");
+        ResponseEntity<Void> response = usuarioController.deleteUsuario("emailinexistente");
         assertEquals(404, response.getStatusCode().value());
     }
 }

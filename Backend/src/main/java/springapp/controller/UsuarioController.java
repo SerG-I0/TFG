@@ -55,13 +55,15 @@ public class UsuarioController {
 
 
     
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUsuario(@PathVariable String id) {
-        if (usuarioRepository.existsById(id)) {
-            usuarioRepository.deleteById(id);
+    @DeleteMapping("/{email:.+}")
+    public ResponseEntity<Void> deleteUsuario(@PathVariable String email) {
+        if (usuarioRepository.existsByEmail(email)) {
+            usuarioRepository.deleteByEmail(email);
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
     }
+
+
 
 }

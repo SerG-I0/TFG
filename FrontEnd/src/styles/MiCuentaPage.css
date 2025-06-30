@@ -1,0 +1,33 @@
+.mi-cuenta-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 20px;
+  padding-bottom: 80px; /* espacio extra para que no tape el botón logout */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  text-align: center;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mi-cuenta-info-box {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.mi-cuenta-button {
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: #6e8efb;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.mi-cuenta-button:hover {
+  background-color: #5a75d8;
+}

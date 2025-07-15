@@ -31,7 +31,6 @@ public class DispositivoController {
     @PostMapping()
     public Dispositivo createDispositivo(@RequestBody Dispositivo dispositivo) {
     	
-    	
         return dispositivoRepository.save(dispositivo);
     }
     
@@ -47,7 +46,6 @@ public class DispositivoController {
     @GetMapping("/escanear")
     public List<Dispositivo> EscaneoWeb(){
     	
-    	//dispositivoRepository.deleteAll();
     	List<Dispositivo> dispositivos = new ArrayList<>();
     	dispositivos = escaneored.RedScann();
     	
@@ -57,7 +55,6 @@ public class DispositivoController {
     	}
     	
 		return dispositivos;
-    	
     }
     
 }

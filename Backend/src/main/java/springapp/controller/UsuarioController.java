@@ -34,7 +34,6 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                                  .body("Ya existe un usuario con ese correo electrónico.");
         }
-        // Hash de la password antes de guardar
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         Usuario nuevoUsuario = usuarioRepository.save(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario);
@@ -55,13 +54,15 @@ public class UsuarioController {
 
 
     
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUsuario(@PathVariable String id) {
-        if (usuarioRepository.existsById(id)) {
-            usuarioRepository.deleteById(id);
+    @DeleteMapping("/{email:.+}")
+    public ResponseEntity<Void> deleteUsuario(@PathVariable String email) {
+        if (usuarioRepository.existsByEmail(email)) {
+            usuarioRepository.deleteByEmail(email);
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
     }
+
+
 
 }

@@ -1,0 +1,186 @@
+.auditorias-container {
+  max-width: 960px;
+  margin: 2rem auto 6rem auto;
+  padding: 2rem; /* más padding para que se vea mejor con el blur */
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* Título */
+.titulo-auditorias {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.auditorias-container input[type="date"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.auditorias-container input[type="date"]:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: white;
+}
+
+.auditorias-container input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+/* Grid 2 columnas para tarjetas */
+.auditorias-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(350px, 1fr)); /* tarjetas más anchas */
+  gap: 1.5rem;
+}
+
+/* Tarjeta auditoría */
+.auditoria-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem 2rem; /* más padding */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 4rem; /* más alto */
+  transition: background-color 0.3s ease;
+  font-size: 1.1rem; /* texto más grande */
+}
+
+.auditoria-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.auditoria-info p {
+  margin: 0;
+  font-size: 1.1rem; /* texto más grande */
+}
+
+.botones-auditoria {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+/* Paginación */
+.paginacion {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.paginacion button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.paginacion button:disabled {
+  background-color: rgba(255, 255, 255, 0.15);
+  cursor: not-allowed;
+}
+
+.paginacion button:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal contenido */
+.modal-content {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 2.5rem;
+  max-width: 650px;
+  max-height: 85vh;
+  overflow-y: auto;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: left;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  font-size: 1.1rem;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.modal-content h3 {
+  margin-top: 1.5rem;
+}
+
+.puertos-list li {
+  margin-bottom: 1rem;
+}
+
+.puertos-list li p {
+  margin: 0.15rem 0;
+  font-size: 1rem;
+}
+
+.modal-close-btn {
+  margin-top: 2rem;
+  padding: 0.6rem 1.2rem;
+  background-color: rgba(255,255,255,0.3);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  display: block;
+  width: 100%;
+}
+
+.modal-close-btn:hover {
+  background-color: rgba(255,255,255,0.5);
+}
+
+/* Responsive para móvil */
+@media (max-width: 700px) {
+  .auditorias-grid {
+    grid-template-columns: 1fr;
+  }
+}

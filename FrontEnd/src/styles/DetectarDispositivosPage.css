@@ -1,0 +1,131 @@
+.dispositivos-container {
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 2rem;
+  padding-top: 4rem;
+  max-width: 30rem; /* 480px */
+  width: 90%;
+  margin: 2rem auto 4rem auto;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.dispositivos-container h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.dispositivos-container button {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0 1rem 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 1rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.dispositivos-container button:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.dispositivos-container button:disabled {
+  background-color: rgba(255, 255, 255, 0.15);
+  cursor: not-allowed;
+}
+
+.auditoria-message {
+  color: #fce86c;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.device-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 18.75rem; /* 300px */
+  overflow-y: auto;
+}
+
+.device-list li {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0.25rem 1.875rem rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: background-color 0.3s ease;
+}
+
+.device-list li:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.device-list li p {
+  margin: 0.2rem 0;
+  font-size: 1rem;
+}
+
+.device-list li h2 {
+  margin: 0 0 0.8rem 0;
+  font-size: 1.2rem;
+}
+
+.no-devices-message {
+  color: #e0e0e0;
+  font-style: italic;
+  margin-top: 2rem;
+}
+
+/* Scrollbar */
+.device-list::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.device-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.device-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 0.5rem;
+}
+
+.device-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* FONDO Y ESPACIADO SUPERIOR CORREGIDO */
+body,
+#root {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  margin: 0;
+ 
+}
+
+@media (max-width: 37.5rem) {
+  .dispositivos-container {
+    max-width: 90%;
+    margin: 1rem auto 5rem auto;
+    padding: 1rem;
+    padding-bottom: 6rem;
+  }
+
+  .device-list li {
+    padding: 0.8rem;
+  }
+
+  .dispositivos-container button {
+    font-size: 1.1rem;
+  }
+}

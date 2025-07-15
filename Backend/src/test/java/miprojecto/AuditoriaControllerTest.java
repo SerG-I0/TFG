@@ -6,6 +6,7 @@ import springapp.controller.AuditoriaController;
 import springapp.dao.AuditoriaRepository;
 import springapp.model.Auditoria;
 import springapp.model.Dispositivo;
+import springapp.security.JWUtil;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,9 +41,10 @@ public class AuditoriaControllerTest {
     @Test
     public void testCreateAuditoriaAndGetAllAuditorias() {
     	//Creamos una auditoria de prueba para realizar el test
-    	  String emailUsuario = "test@example.com"; // email simulado para el test
+    	String tokentest = JWUtil.generateToken("test@example.com");
+    	 //String emailUsuario = "test@example.com"; // email simulado para el test
 
-        Auditoria auditoriaTest = auditoriaController.createAuditoria(dispositivoPrueba,emailUsuario);
+        Auditoria auditoriaTest = auditoriaController.createAuditoria(dispositivoPrueba,tokentest);
 
         //Comprobamos que existe la auditoria y que esta concide con la creada
         assertNotNull(auditoriaTest);
@@ -61,11 +63,10 @@ public class AuditoriaControllerTest {
 
     @Test
     public void testDeleteAuditoria() {
-    	
-    	 String emailUsuario = "test@example.com"; // email simulado para el test
-    	//Creamos una auditoria de prueba para insertarla
-    	
-        Auditoria auditoriaTest = auditoriaController.createAuditoria(dispositivoPrueba,emailUsuario);
+    	String tokentest = JWUtil.generateToken("test@example.com");
+   	 //String emailUsuario = "test@example.com"; // email simulado para el test
+
+       Auditoria auditoriaTest = auditoriaController.createAuditoria(dispositivoPrueba,tokentest);
         
        //Borramos la auditoria y recogemos la respuesta
         var response = auditoriaController.deleteAuditoria(auditoriaTest.getId());

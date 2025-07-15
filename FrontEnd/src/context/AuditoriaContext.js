@@ -18,7 +18,7 @@ export const AuditoriaProvider = ({ children }) => {
   );
 };
 
-// Aquí defines y exportas el hook personalizado para consumir el contexto
+// Aquí definimos y exportamos el hook  para consumir el contexto
 export const useAuditoria = () => {
   return useContext(AuditoriaContext);
 };

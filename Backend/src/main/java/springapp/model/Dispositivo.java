@@ -16,10 +16,7 @@ public class Dispositivo {
     private LocalDateTime fecha;
     
     
-    
-
-	
-
+   
 	// Constructor vacio
 	public Dispositivo() {
 		super();
@@ -75,7 +72,7 @@ public class Dispositivo {
 	}
 
 	public void setFecha(LocalDateTime fecha) {
-		fecha = fecha;
+		this.fecha = fecha;
 	}
 
 

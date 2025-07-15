@@ -23,9 +23,9 @@ public class AuditoriaDispositivo {
         return text.trim();
     }
 
-    public Auditoria RealizarAuditoria(Dispositivo d) {
+    public Auditoria RealizarAuditoria(Dispositivo dispositivo) {
 
-        String targetIp = d.getIp();
+        String targetIp = dispositivo.getIp();
         String command = "nmap -p 1-65535 -O --open --script vuln,default,ssl-cert,ssl-enum-ciphers " + targetIp;
 
         Auditoria auditoria = new Auditoria();
@@ -111,7 +111,7 @@ public class AuditoriaDispositivo {
                 puertos.add(puerto);
             }
 
-            auditoria.setDispositivo(d);
+            auditoria.setDispositivo(dispositivo);
             auditoria.setPuertos(puertos);
             auditoria.setFecha(LocalDateTime.now());
 

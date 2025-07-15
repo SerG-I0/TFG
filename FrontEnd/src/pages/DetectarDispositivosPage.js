@@ -41,7 +41,7 @@ function DispositivosPage() {
       .then(response => {
         console.log("Dispositivos escaneados.", response.data);
         setDispositivos(response.data);
-        setEscaneoRealizado(true); // aquí marcamos que ya se hizo el escaneo
+        setEscaneoRealizado(true); // Marcamos que ya se hizo el escaneo
       })
       .catch(error => {
         console.error("Error al escanear la red.", error);

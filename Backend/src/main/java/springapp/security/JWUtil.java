@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class JWUtil {
     private static final String SECRET_KEY = "mi_clave_secreta_segura_1234567890_!@#$%";
-    private static final long EXPIRATION_TIME = 60 * 60 * 1000; // 1 hora en ms
+    private static final long EXPIRATION_TIME = 60 * 60 * 1000; // 2 hora en ms
 
     public static String generateToken(String email) {
         return Jwts.builder()

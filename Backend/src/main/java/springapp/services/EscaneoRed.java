@@ -24,7 +24,6 @@ public class EscaneoRed {
 	            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 	            String line;
 	            String currentIp = null;
-
 	            while ((line = reader.readLine()) != null) {
 	                line = line.trim();
 
@@ -32,7 +31,6 @@ public class EscaneoRed {
 	                if (line.startsWith("Nmap scan report for")) {
 	                    currentIp = line.substring(line.lastIndexOf(" ") + 1);
 	                }
-
 	                // Detectar dirección MAC y fabricante
 	                else if (line.startsWith("MAC Address:") && currentIp != null) {
 	                    Pattern patternMac = Pattern.compile("MAC Address: ([\\w:]+) \\(([^)]+)\\)");

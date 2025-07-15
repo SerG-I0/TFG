@@ -29,8 +29,7 @@ public class UsuarioControllerTest {
     private static final String TEST_PASSWORD = "prueba123";
     
     private static final Usuario usuario = new Usuario( TEST_EMAIL, TEST_PASSWORD);
-    //usuario.setEmail(TEST_EMAIL);
-    //usuario.setPassword(TEST_PASSWORD);
+
 
     @Test
     @Order(1)

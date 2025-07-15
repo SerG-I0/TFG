@@ -34,7 +34,6 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                                  .body("Ya existe un usuario con ese correo electrónico.");
         }
-        // Hash de la password antes de guardar
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         Usuario nuevoUsuario = usuarioRepository.save(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario);
